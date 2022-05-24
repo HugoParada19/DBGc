@@ -14,7 +14,7 @@ class CreateRequisitantesTable extends Migration
     public function up()
     {
         Schema::create('requisitantes', function (Blueprint $table) {
-            $table->id();
+			$table->foreignId('user_id')->constrained();
 			$table->string('nome');
 			$table->foreignId('funcao_id')->constrained('roles');
 			$table->foreignId('polo_id')->constrained();

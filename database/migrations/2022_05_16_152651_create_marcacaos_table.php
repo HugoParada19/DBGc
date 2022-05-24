@@ -15,7 +15,7 @@ class CreateMarcacaosTable extends Migration
     {
         Schema::create('marcacaos', function (Blueprint $table) {
             $table->id();
-			$table->foreignId('requisitante_id')->constrained();
+			$table->foreignId('user_id')->constrained();
 			$table->foreignId('poloLevantar_id')->constrained('polos');
 			$table->dateTime('dataHora_levantar');
 			$table->dateTime('dataHora_entrega');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\colecoesController;
+namespace App\Http\Controllers\Backend;
 
 /*
  * Class colecoesController.
@@ -13,6 +13,11 @@ class colecoesController
 	 */
 	public function index()
 	{
-		return view('admin.colecoes.index');
+		return view('backend.colecoes.index');
+	}
+
+	public function polViews()
+	{
+		return view('backend.colecoes.polos');
 	}
 }

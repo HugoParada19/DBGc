@@ -1,0 +1,23 @@
+@extends('backend.layouts.app')
+
+@section('title', 'polos')
+
+@section('content')
+	<x-backend.card>
+		<x-slot name="header">
+			@land('Welcome :Name', ['name' => $logged_in_user->name])
+		</x-slot>
+
+		<x-slot name="body">
+			<form method="POST">
+				@csrf
+				<label for="designacao">Introduza a designação do polo</label><br>
+				<input type="text" name="designacao"><br><br>
+				<input type="submit">
+			</form>
+			<x-utils.link
+				class="card-header-action"
+				href="#"
+				text="Back" />
+		</x-slot>
+	</x-backend.card>
