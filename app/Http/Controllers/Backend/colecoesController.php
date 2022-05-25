@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\DB;
+use App\Models\Polos;
+
 /*
  * Class colecoesController.
  */
@@ -18,6 +21,7 @@ class colecoesController
 
 	public function polViews()
 	{
-		return view('backend.colecoes.polos');
+		$polos = DB::table('polos')->get();
+		return view('backend.colecoes.polos', compact('polos'));
 	}
 }

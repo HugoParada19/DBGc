@@ -5,13 +5,15 @@ use Tabuna\Breadcrumbs\Trail;
 
 Route::get('colecoes', [colecoesController::class,'index'])
 	->name('colecoes')
-    ->breadcrumbs(function (Trail $trail) {
-        $trail->push(__('Home'), route('admin.colecoes'));
-    });
-
-Route::get('polos', [colecoesController::class,'polViews'])
-	->nmae('polos')
 	->breadcrumbs(function (Trail $trail)
 	{
-		$trail->push(__('Home'), route('admin.colecoes.polos'));
+		$trail->push(__('Home'), route('admin.colecoes'));
+	});
+
+Route::get('colecoes/polos', [colecoesController::class,'polViews'])
+	->name('colecoes.polos')
+	->breadcrumbs(function (Trail $trail)
+	{
+		$trail->parent('admin.colecoes')
+			->push(__('Home'), route('admin.colecoes.polos'));
 	});

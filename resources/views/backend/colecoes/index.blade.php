@@ -13,7 +13,7 @@
 			<ul>
 				<x-utils.link
 					class="card-header-action"
-					:href="route('admin.colecoes.role.polos')"
+					:href="route('admin.colecoes.polos')"
 					text="polos" />
 				<x-utils.link 
 					class="card-header-action"
