@@ -6,25 +6,27 @@
 	<x-backend.card>
 		<x-slot name="header">
 			@lang('Welcome :Name', ['name' => $logged_in_user->name])
+			<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 		</x-slot>
 
 		<x-slot name="body">
-			Atual base de dados das viaturas<br><br>
-			<x-slot name="table">
-				<x-slot name="th">
-					<x-slot name="td">Id</x-slot>
-					<x-slot name="td">Designação</x-slot>
-				</x-slot>
+			<h2>Todos os polos registrados atuais.</h2>
+			<table>
+				<tr>
+					<td>Id</td>
+					<td>Designação</td>
+				</tr>
 				@foreach($polos as $polo)
-				<x-slot name="tb">
-					<x-slot name="td">{{ $polo->id }}</x-slot>
-					<x-slot name="td">{{ $polo->designacao }}</x-slot>
-				</x-slot>
+				<tr>
+					<td>{{ $polo->id }}</td>
+					<td>{{ $polo->designacao }}</td>
+				</tr>
 				@endforeach
-			</x-slot>
+			</table>
 			<x-utils.link
 				class="card-header-action"
 				:href="route('admin.colecoes.index')"
 				text="Back"
 		</x-slot>
 	</x-backend.card>
+@endsection

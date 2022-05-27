@@ -6,6 +6,7 @@
 	<x-backend.card>
 		<x-slot name="header">
 			@lang('Welcome :Name', ['name' => $logged_in_user->name])
+			<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 		</x-slot>
 
 		<x-slot name="body">
