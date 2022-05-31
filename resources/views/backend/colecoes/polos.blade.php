@@ -9,7 +9,12 @@
 			<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 		</x-slot>
 
-		<x-slot name="body">
+		@if($requested)
+			<x-slot name="body"
+				onload="changeURL('admin/colecoes/polos')">
+		@else
+			<x-slot name="body">
+		@endif
 			<h2>Todos os polos registrados atuais.</h2>
 			<table>
 				<tr>
@@ -25,7 +30,7 @@
 			</table>
 			<x-utils.link
 				class="card-header-action"
-				:href="route('admin.colecoes.index')"
+				:href="route('admin.colecoes.polos')"
 				text="Back"
 		</x-slot>
 	</x-backend.card>

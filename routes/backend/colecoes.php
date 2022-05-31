@@ -17,3 +17,21 @@ Route::get('colecoes/polos', [colecoesController::class,'polViews'])
 		$trail->parent('admin.colecoes')
 			->push(__('Home'), route('admin.colecoes.polos'));
 	});
+
+Route::get('colecoes/polos/create', [colecoesController::class,'cPolMenu'])
+	->name('colecoes.polos.create')
+	->breadcrumbs(function (Trail $trail)
+	{
+		$trail->parent('admin.colecoes')
+			->push(__('Home'), route('admin.colecoes.polos'));
+	});
+
+Route::get('colecoes/polos/{id}/destroy', [colecoesController::class,'destroyPolo'])
+	->name('colecoes.polos')
+	->breadcrumbs(function (Trail $trail)
+	{
+		$trail->parent('admin.colecoes')
+			->push(__('Home'), route('admin.colecoes.polos'));
+	});
+
+Route::post('colecoes/polos', [colecoesController::class,'createPolo']);
