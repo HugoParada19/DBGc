@@ -25,12 +25,13 @@
 				<tr>
 					<td>{{ $polo->id }}</td>
 					<td>{{ $polo->designacao }}</td>
+					<td><a href="{{ URL('admin/colecoes/polos/{id}/destroy', $polo->id) }}">Eliminar</a></td>
 				</tr>
 				@endforeach
 			</table>
 			<x-utils.link
 				class="card-header-action"
-				:href="route('admin.colecoes.polos')"
+				:href="route('admin.colecoes')"
 				text="Back"
 		</x-slot>
 	</x-backend.card>

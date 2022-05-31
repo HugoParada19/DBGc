@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', 'polos')
+@section('title', 'colecoes.polos.create')
 
 @section('content')
 	<x-backend.card>
