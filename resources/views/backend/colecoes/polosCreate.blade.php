@@ -17,7 +17,7 @@
 			</form>
 			<x-utils.link
 				class="card-header-action"
-				href="#"
+				:href="route('admin.colecoes.polos')"
 				text="Back" />
 		</x-slot>
 	</x-backend.card>

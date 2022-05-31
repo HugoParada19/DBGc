@@ -44,9 +44,15 @@ class colecoesController
 
 	public function destroyPolo($id)
 	{
-		Polos::find($id)->destroy();
+		Polos::find($id)->delete();
 
 		$polos = DB::table('polos')->get();
 		return view('backend.colecoes.polos', compact('polos'))->with('requested', true);
+	}
+
+	public function catView()
+	{
+		$categorias = DB::table('categorias_conta')->get();
+		return view('backend.colecoes.categorias', compact('categorias'));
 	}
 }

@@ -7,6 +7,7 @@
 		<x-slot name="header">
 			@lang('Welcome :Name', ['name' => $logged_in_user->name])
 			<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+			<script src="{{ asset('js/main.js') }}"></script>
 		</x-slot>
 
 		@if($requested)
@@ -25,14 +26,18 @@
 				<tr>
 					<td>{{ $polo->id }}</td>
 					<td>{{ $polo->designacao }}</td>
-					<td><a href="{{ URL('admin/colecoes/polos/{id}/destroy', $polo->id) }}">Eliminar</a></td>
+					<td><a href="{{ URL('admin/colecoes/polos/' . $polo->id . '/destroy') }}">Eliminar</a></td>
 				</tr>
 				@endforeach
 			</table>
 			<x-utils.link
 				class="card-header-action"
+				:href="route('admin.colecoes.polos.create')"
+				text="Criar" />
+			<x-utils.link
+				class="card-header-action"
 				:href="route('admin.colecoes')"
-				text="Back"
+				text="Back" />
 		</x-slot>
 	</x-backend.card>
 @endsection

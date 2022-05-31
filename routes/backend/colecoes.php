@@ -28,4 +28,12 @@ Route::get('colecoes/polos/create', [colecoesController::class,'cPolMenu'])
 
 Route::get('colecoes/polos/{id}/destroy', [colecoesController::class,'destroyPolo']);
 
+Route::get('colecoes/categorias', [colecoesController::class,'catView'])
+	->name('colecoes.categorias')
+	->breadcrumbs(function (Trail $trail)
+	{
+		$trail->parent('admin.colecoes')
+			->push(__('Home'), route('admin.colecoes.categorias'));
+	});
+
 Route::post('colecoes/polos', [colecoesController::class,'createPolo']);
