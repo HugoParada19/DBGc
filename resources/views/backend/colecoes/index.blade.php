@@ -15,15 +15,15 @@
 				<x-utils.link
 					class="card-header-action"
 					:href="route('admin.colecoes.polos')"
-					text="polos" />
+					text="Polos" />
+				<x-utils.link
+					class="card-header-action"
+					:href="route('admin.colecoes.categorias')"
+					text="Categorias da conta" />
 				<x-utils.link 
 					class="card-header-action"
 					href="#"
 					text="Viaturas" />
-				<x-utils.link
-					class="card-header-action"
-					href="#"
-					text="Categorias da conta" />
 			</ul>
 		</x-slot>
 	</x-backend.card>

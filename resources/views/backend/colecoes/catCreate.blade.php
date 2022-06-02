@@ -1,23 +1,24 @@
 @extends('backend.layouts.app')
 
-@section('title', 'colecoes.polos.create')
+@section('title', 'colecoes.categorias.create')
 
 @section('content')
 	<x-backend.card>
 		<x-slot name="header">
 			@lang('Welcome :Name', ['name' => $logged_in_user->name])
+			<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 		</x-slot>
 
 		<x-slot name="body">
 			<form method="POST">
 				@csrf
-				<label for="designacao">Introduza a designação do polo</label><br>
-				<input type="text" name="designacao"><br><br>
+				<label for="categoria">Introduza a categorias:</label><br><br>
+				<input type="text" name="categoria"><br>
 				<input type="submit">
 			</form>
 			<x-utils.link
 				class="card-header-action"
-				:href="route('admin.colecoes.polos')"
+				:href="route('admin.colecoes.categorias')"
 				text="Back" />
 		</x-slot>
 	</x-backend.card>

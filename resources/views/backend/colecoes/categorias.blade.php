@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', 'colecoes.categoria')
+@section('title', 'colecoes.categorias')
 
 @section('content')
 	<x-backend.card>
@@ -26,7 +26,7 @@
 
 			<x-utils.link
 				class="card-header-action"
-				:href="route('admin.colecoes.viaturas.create')"
+				:href="route('admin.colecoes.categorias.create')"
 				text="Criar" />
 			<x-utils.link
 				class="card-header-action"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Polos;
+use App\Models\categorias_contas;
 use Illuminate\Http\Request;
 
 /*
@@ -52,7 +53,31 @@ class colecoesController
 
 	public function catView()
 	{
-		$categorias = DB::table('categorias_conta')->get();
-		return view('backend.colecoes.categorias', compact('categorias'));
+		$categorias = DB::table('categorias_contas')->get();
+		return view('backend.colecoes.categorias', compact('categorias'))->with('requested', false);
+	}
+
+	public function cCatMenu()
+	{
+		$categorias = DB::table('categorias_contas')->get();
+		return view('backend.colecoes.catCreate', compact('categorias'));
+	}
+
+	public function createCat(Request $request)
+	{
+		$categoria = new categorias_contas;
+		$categoria->categoria = $request->categoria;
+		$categoria->save();
+
+		$categorias = DB::table('categorias_contas')->get();
+		return view('backend.colecoes.categorias', compact('categorias'))->with('requested', true);
+	}
+
+	public function destroyCat($id)
+	{
+		categorias_contas::find($id)->delete();
+
+		$categorias = DB::table('categorias_contas')->get();
+		return view('backend.colecoes.categorias', compact('categorias'))->with('requested', true);
 	}
 }
