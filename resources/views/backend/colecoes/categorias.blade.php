@@ -9,7 +9,12 @@
 			<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 		</x-slot>
 
-		<x-slot name="body">
+		@if($requested)
+			<x-slot name="body"
+				onload="changeURL('admin/colecoes/categorias')" />
+		@else
+			<x-slot name="body">
+		@endif
 			<h2>Atuais categorias de conta reconhecidas</h2>
 			<table>
 				<tr>
@@ -31,7 +36,7 @@
 			<x-utils.link
 				class="card-header-action"
 				:href="route('admin.colecoes')"
-				text="Back" />
+				text="Voltar" />
 		</x-slot>
 	</x-backend.card>
 @endsection

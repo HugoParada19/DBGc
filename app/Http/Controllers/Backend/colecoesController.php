@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Support\Facades\DB;
 use App\Models\Polos;
 use App\Models\categorias_contas;
+use App\Models\Viaturas;
 use Illuminate\Http\Request;
 
 /*
@@ -79,5 +80,32 @@ class colecoesController
 
 		$categorias = DB::table('categorias_contas')->get();
 		return view('backend.colecoes.categorias', compact('categorias'))->with('requested', true);
+	}
+
+	public function viaView()
+	{
+		$viaturas = Viaturas::all();
+		return view('backend.colecoes.viaturas', compact('viaturas'))->with('requested', true);
+	}
+
+	public function cViaMenu()
+	{
+		return view('backend.colecoes.viaCreate');
+	}
+
+	public function createVia(Request $request)
+	{
+		$viaturas = new Viaturas;
+		$viaturas->matricula = $request->matricula;
+		$viaturas->marca = $request->marca;
+		$viaturas->polos_id = $request->polos_id;
+		$viaturas->catConta_id = $request->catConta_id;
+		$viaturas->timestamps = $request->timestamps;
+		$viaturas->save();
+
+		$viaturas = null;
+		$viaturas = DB::table('viaturas')->get();
+
+		return view('backend.colecoes.viaturas', compact('viaturas'))->with('requested', true);
 	}
 }
