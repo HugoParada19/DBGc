@@ -20,6 +20,7 @@ class CreateViaturasTable extends Migration
 			$table->string('modelo');
 			$table->foreignId('polos_id')->constrained('polos');
 			$table->foreignId('catCarta_id')->constrained('categorias_cartas');
+			$table->boolean('requisited')->default(false);
             $table->timestamps();
         });
     }
