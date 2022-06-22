@@ -7,15 +7,16 @@
 		<x-slot name="header">
 			@lang('Welcome :Name', ['name' => $logged_in_user->name])
 			<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+			<script src="{{ asset('js/main.js') }}"></script>
 		</x-slot>
 
 		@if($requested)
 			<x-slot name="body"
-				onload="changeURL('admin/colecoes/categorias')" />
+				onload="changeURL('admin/colecoes/categorias')">
 		@else
 			<x-slot name="body">
 		@endif
-			<h2>Atuais categorias de conta reconhecidas</h2>
+			<h2>Atuais categorias de carta reconhecidas</h2>
 			<table>
 				<tr>
 					<td>Id</td>
@@ -25,6 +26,7 @@
 				<tr>
 					<td>{{ $categoria->id }}</td>
 					<td>{{ $categoria->categoria }}</td>
+					<td><a href="{{ URL('admin/colecoes/categorias/' . $categoria->id . '/destroy') }}">Eliminar</a></td>
 				</tr>
 			@endforeach
 			</table>

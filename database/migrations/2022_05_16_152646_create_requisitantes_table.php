@@ -18,7 +18,7 @@ class CreateRequisitantesTable extends Migration
 			$table->string('nome');
 			$table->foreignId('funcao_id')->constrained('roles');
 			$table->foreignId('polo_id')->constrained();
-			$table->foreignId('catConta_id')->constrained('categorias_contas');
+			$table->foreignId('catCarta_id')->constrained('categorias_cartas');
 			$table->date('dataValConta');
         });
     }

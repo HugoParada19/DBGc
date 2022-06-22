@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
 		]);
 		DB::table('polos')->insert
 		([
-			'designacao' => 'Amadora polo',
+			'designacao' => 'Amadora centro',
 		]);
 		DB::table('polos')->insert
 		([
@@ -50,6 +50,62 @@ class DatabaseSeeder extends Seeder
 		DB::table('polos')->insert
 		([
 			'designacao' => 'Lisboa',
+		]);
+
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'A - AM', ]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'A - A1',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'B - B1',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'A - A2',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'B - B',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'B - BE',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'C - C1',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'C - C1E',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'C - C',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'D - D1',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'D - D1E',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'A - A',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'D - D',
+		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'D - DE',
 		]);
     }
 }

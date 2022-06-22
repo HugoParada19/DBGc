@@ -10,11 +10,11 @@
 			<script src="{{ asset('js/main.js') }}"></script>
 		</x-slot>
 
+		<x-slot name="body">
 		@if($requested)
-			<x-slot name="body"
-				onload="changeURL('admin/colecoes/polos')">
-		@else
-			<x-slot name="body">
+				<body onload="changeURL('admin/colecoes/polos')">
+		@elseif($iCanExist)
+				<body onload="iCanExist('admin/colecoes/polos')">
 		@endif
 			<h2>Todos os polos registrados atuais.</h2>
 			<table>
@@ -39,5 +39,8 @@
 				:href="route('admin.colecoes')"
 				text="Back" />
 		</x-slot>
+		@if($requested || $iCanExist)
+			</body>
+		@endif
 	</x-backend.card>
 @endsection

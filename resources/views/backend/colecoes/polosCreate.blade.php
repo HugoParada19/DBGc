@@ -11,7 +11,7 @@
 		<x-slot name="body">
 			<form method="POST">
 				@csrf
-				<label for="designacao">Introduza a designação do polo</label><br>
+				<label for="designacao">Introduza a designação do polo:</label><br>
 				<input type="text" name="designacao"><br><br>
 				<input type="submit">
 			</form>

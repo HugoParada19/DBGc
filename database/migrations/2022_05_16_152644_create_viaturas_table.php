@@ -19,7 +19,7 @@ class CreateViaturasTable extends Migration
 			$table->string('marca');
 			$table->string('modelo');
 			$table->foreignId('polos_id')->constrained('polos');
-			$table->foreignId('catConta_id')->constrained('categorias_contas');
+			$table->foreignId('catCarta_id')->constrained('categorias_cartas');
             $table->timestamps();
         });
     }

@@ -7,11 +7,12 @@
 		<x-slot name="header">
 			@lang('Welcome :Name', ['name' => $logged_in_user->name])
 			<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+			<script src="{{ asset('js/main.js') }}"></script>
 		</x-slot>
 
 		@if($requested)
 			<x-slot name="body"
-				onload="changeURL('admin/colecoes/viaturas')" />
+				onload="changeURL('admin/colecoes/viaturas')" >
 		@else
 			<x-slot name="body">
 		@endif
@@ -31,8 +32,9 @@
 						<td>{{ $viatura->id }}</td>
 						<td>{{ $viatura->matricula }}</td>
 						<td>{{ $viatura->marca }}</td>
+						<td>{{ $viatura->modelo }}</td>
 						<td>{{ $viatura->polos_id }}</td>
-						<td>{{ $viatura->catConta_id }}</td>
+						<td>{{ $viatura->catCarta_id }}</td>
 						<td>{{ $viatura->timestamps }}</td>
 					</tr>
 				@endforeach

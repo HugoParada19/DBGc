@@ -19,10 +19,10 @@
 				<x-utils.link
 					class="card-header-action"
 					:href="route('admin.colecoes.categorias')"
-					text="Categorias da conta" />
+					text="Categorias da carta" />
 				<x-utils.link 
 					class="card-header-action"
-					href="#"
+					:href="route('admin.colecoes.viaturas')"
 					text="Viaturas" />
 			</ul>
 		</x-slot>
