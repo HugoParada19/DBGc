@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Models\Viaturas;
+use Illuminate\Support\Facades\Auth;
+use App\Domains\Auth\Models\User;
 
 class teachersController
 {
@@ -14,8 +16,10 @@ class teachersController
 
 	public function requestVehic()
 	{
-		$viaturas = Viaturas::all();
-		return view('frontend.user.reqVehicules', compact('viaturas'));
+		$viaturas = Viaturas::with('polo', 'categoria')->get();
+		$user = User::find(Auth::id())->with('userinf')->get();
+
+		return view('frontend.user.reqVehicules', compact('viaturas', 'user'));
 	}
 
 	public function requesting($id)

@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Viaturas extends Model
 {
     use HasFactory;
+
+	public function polo()
+	{
+		return $this->belongsTo(Polos::class, 'polos_id');
+	}
+
+	public function categoria()
+	{
+		return $this->belongsTo(categorias_cartas::class, 'catCarta_id');
+	}
 }

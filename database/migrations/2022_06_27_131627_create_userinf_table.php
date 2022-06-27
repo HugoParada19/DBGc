@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequisitantesTable extends Migration
+class CreateCartaBindsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateRequisitantesTable extends Migration
      */
     public function up()
     {
-        Schema::create('requisitantes', function (Blueprint $table) {
-			$table->foreignId('user_id')->constrained();
-			$table->string('nome');
-			$table->foreignId('funcao_id')->constrained('roles');
-			$table->foreignId('polo_id')->constrained();
+        Schema::create('carta_binds', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->unique();
+			$table->foreignId('polos_id')->constrained();
 			$table->foreignId('catCarta_id')->constrained('categorias_cartas');
-			$table->date('dataValCarta');
         });
     }
 
@@ -30,6 +27,6 @@ class CreateRequisitantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requisitantes');
+        Schema::dropIfExists('carta_binds');
     }
 }

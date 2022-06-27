@@ -150,6 +150,11 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
         return ! $this->isMasterAdmin();
     }
 
+	public function userinf()
+	{
+		return $this->hasOne(userinf::class);
+	}
+
     /**
      * Create a new factory instance for the model.
      *

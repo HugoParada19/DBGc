@@ -17,6 +17,7 @@
 							<tr>
 								<td>Id</td>
 								<td>Matricula</td>
+								<td>Marca</td>
 								<td>Modelo</td>
 								<td>Polo</td>
 								<td>Categoria da Carta</td>
@@ -27,20 +28,27 @@
 								<tr>
 									<td>{{ $viatura->id }}</td>
 									<td>{{ $viatura->matricula }}</td>
-									<td>{{ DB::table('polos')->where('id', $viatura->polo_id)->value('designacao') }}</td>
-									<td>{{ DB::table('categorias_cartas')->where('id', $viatura->catCarta_id)->value('categoria') }}</td>
-									<td>{{ $viatura->requisited }}</td>
-									<td><x-utils.link
-										text="requisitar"
-										class="nav-link active"
-										data-toggle="pill"
-										@if ($viatura->requested)
-											pointer-events="none"
-											href="#"
+									<td>{{ $viatura->marca }}</td>
+									<td>{{ $viatura->modelo }}</td>
+									<td>{{ $viatura->polo->designacao }}</td>
+									<td>{{ $viatura->categoria->categoria }}</td>
+									@if ($viatura->requisited == 1)
+										<td>Sim</td>
+									@else
+										<td>Não</td>
+									@endif
+									<td>
+										@if ($viatura->requested == 1)
+											<label color="gray">requisitar</label>
 										@else
-											href="#"
+											<x-utils.link
+												text="requisitar"
+												class="nav-link active"
+												data-toggle="pill"
+												href="#"
+												role="tab" />
 										@endif
-										role="tab" /></td>
+									</td>
 								</tr>
 							@endforeach
 						</table>

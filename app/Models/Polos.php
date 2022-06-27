@@ -9,4 +9,14 @@ class Polos extends Model
 {
     use HasFactory;
 	public $timestamps = false;
+
+	public function viaturas()
+	{
+		return $this->hasMany(Viaturas::class);
+	}
+
+	public function userinf()
+	{
+		return $this->hasMany(userinf::class);
+	}
 }

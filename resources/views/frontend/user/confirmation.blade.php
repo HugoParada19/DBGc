@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'request')
+@section('title', 'vehicules')
 
 @section('content')
 	<div class="container py-4">
@@ -12,12 +12,7 @@
 					</x-slot>
 
 					<x-slot name="body">
-						<h2>Informação:</h2><br><br>
-						Matricula: {{ $viatura->matricula }}<br>
-						Marca: {{ $viatura->marca }}<br>
-						Modelo: {{ $viatura->modelo }}<br>
-						Categoria requesitada: {{ $viatura->categoria->categoria }}<br>
-						Categoria do utilizador: {{ $user->userinf->categoria->categoria }}
+						
 					</x-slot>
 				</x-frontend.card>
 			</div>

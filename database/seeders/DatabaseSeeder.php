@@ -107,5 +107,7 @@ class DatabaseSeeder extends Seeder
 		([
 			'categoria' => 'D - DE',
 		]);
+
+		$this->call(testVehSeeder::class);
     }
 }
