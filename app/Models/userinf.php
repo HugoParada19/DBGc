@@ -23,6 +23,6 @@ class userinf extends Model
 
 	public function categorias()
 	{
-		return $this->hasMany(userCats::class, 'catCarta_id');
+		return $this->hasMany(userCats::class, 'user_id')->orderBy('catCarta_id', 'desc');
 	}
 }

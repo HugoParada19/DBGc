@@ -16,7 +16,7 @@ class CreateCartaBindsTable extends Migration
         Schema::create('carta_binds', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->unique();
 			$table->foreignId('polos_id')->constrained();
-			$table->foreignId('catCarta_id')->constrained('categorias_cartas');
+			$table->foreignId('cartas_id')->constrained('user_cats');
         });
     }
 
