@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class userCats extends Model
 {
     use HasFactory;
-	private $timestamps = false;
+	public $timestamps = false;
 
-	public function userinf()
+	public function user()
 	{
-		return $this->belongsTo(userinf::class);
+		return $this->belongsTo(userinf::class, 'id');
 	}
 
 	public function categorias()
 	{
-		return $this->belongsTo(categorias_cartas::class);
+		return $this->belongsTo(categorias_cartas::class, 'id');
 	}
 }

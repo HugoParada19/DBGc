@@ -9,20 +9,20 @@ use App\Domains\Auth\Models\User;
 class userinf extends Model
 {
     use HasFactory;
-	private $timestamps = false;
+	public $timestamps = false;
 
 	public function user()
 	{
-		return $this->belongsTo(User::class, 'user_id');
+		return $this->belongsTo(User::class, 'id');
 	}
 
 	public function polo()
 	{
-		return $this->belongsTo(Polos::class, 'polo_id');
+		return $this->belongsTo(Polos::class, 'id');
 	}
 
 	public function categorias()
 	{
-		return $this->hasMany(userCats::class, 'user_id')->orderBy('catCarta_id', 'desc');
+		return $this->hasManyThrough(userCats::class, 'userinf_id');
 	}
 }

@@ -12,11 +12,11 @@ class categorias_cartas extends Model
 
 	public function viaturas()
 	{
-		return $this->hasMany(Viaturas::class);
+		return $this->hasMany(Viaturas::class, 'catCarta_id');
 	}
 
 	public function userCats()
 	{
-		return $this->hasMany(userCats::class);
+		return $this->hasMany(userCats::class, 'catCarta_id');
 	}
 }

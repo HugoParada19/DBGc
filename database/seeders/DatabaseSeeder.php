@@ -109,5 +109,6 @@ class DatabaseSeeder extends Seeder
 		]);
 
 		$this->call(testVehSeeder::class);
+		$this->call(userinfSeeder::class);
     }
 }

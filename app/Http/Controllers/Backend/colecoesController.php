@@ -119,7 +119,7 @@ class colecoesController
 		$viaturas->modelo = $request->modelo;
 		$viaturas->catCarta_id = DB::table('categorias_cartas')->where('categoria', $request->catCarta_id)->value('id');
 		$viaturas->polos_id = DB::table('polos')->where('designacao', $request->polos_id)->value('id');
-		$viaturas->timestamps = new DateTime('now');
+		$viaturas->timestamps = new DateTime('today');
 		$viaturas->save();
 
 		$viaturas = null;

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserCatsTable extends Migration
+class CreateUserinfsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateUserCatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_cats', function (Blueprint $table) {
-			$table->foreignId('user_id')->constrained('userinf');
-			$table->foreignId('catCarta_id')->constrained('categorias_cartas');
+        Schema::create('userinfs', function (Blueprint $table) {
+            $table->id();
+			$table->foreignId('user_id')->constrained('users');
+			$table->foreignId('polo_id')->constrained('polos');
         });
     }
 
@@ -26,6 +27,6 @@ class CreateUserCatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_cats');
+        Schema::dropIfExists('userinfs');
     }
 }

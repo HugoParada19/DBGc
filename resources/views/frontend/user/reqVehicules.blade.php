@@ -41,12 +41,8 @@
 										@if ($viatura->requested == 1)
 											<label color="gray">requisitar</label>
 										@else
-											<x-utils.link
-												text="requisitar"
-												class="nav-link active"
-												data-toggle="pill"
-												href="#"
-												role="tab" />
+											<a class="nav-link active"
+												href="{{ URL('vehicules/request/' . $viatura->id) }}">requisitar</a>
 										@endif
 									</td>
 								</tr>
