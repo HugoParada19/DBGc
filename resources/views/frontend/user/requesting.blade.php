@@ -18,7 +18,7 @@
 						Modelo: {{ $viatura->modelo }}<br>
 						Polo presente: {{ $viatura->polo->descricao }}<br>
 						Categoria requesitada: {{ $viatura->categorias->categoria }}<br>
-						Categoria do utilizador: {{ $usercats->categorias->categoria }}
+						Categoria do utilizador: {{ $usercat->categorias->categoria }}
 					</x-slot>
 				</x-frontend.card>
 			</div>

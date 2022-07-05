@@ -12,16 +12,16 @@ class Usercat extends Model
 
 	public function user()
 	{
-		return $this->belongsTo(userinf::class, 'id');
+		return $this->belongsTo(userinf::class, 'userinf_id');
 	}
 
 	public function categoria()
 	{
-		return $this->belongsTo(categorias_cartas::class, 'id');
+		return $this->belongsTo(categorias_cartas::class, 'catCarta_id');
 	}
 
 	public function categorias()
 	{
-		return $this->hasManyThrough(categorias_cartas::class, userinf::class);
+		return $this->hasOneThrough(categorias_cartas::class, userinf::class);
 	}
 }

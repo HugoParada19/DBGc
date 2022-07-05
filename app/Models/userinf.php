@@ -13,16 +13,16 @@ class userinf extends Model
 
 	public function user()
 	{
-		return $this->belongsTo(User::class, 'id');
+		return $this->belongsTo(User::class, 'user_id');
 	}
 
 	public function polo()
 	{
-		return $this->belongsTo(Polos::class, 'id');
+		return $this->belongsTo(Polos::class, 'polo_id');
 	}
 
-	public function Usercats()
+	public function Usercat()
 	{
-		return $this->hasMany(Usercat::class, 'userinf_id');
+		return $this->hasOne(Usercat::class);
 	}
 }
