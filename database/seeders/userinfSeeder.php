@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\userinf;
-use App\Models\userCats;
+use App\Models\Usercat;
 
 class userinfSeeder extends Seeder
 {
@@ -25,17 +25,17 @@ class userinfSeeder extends Seeder
 		$user->polo_id = 2;
 		$user->save();
 
-		$categoria = new userCats;
+		$categoria = new Usercat;
 		$categoria->userinf_id = 1;
 		$categoria->catCarta_id = 3;
 		$categoria->save();
 		
-		$categoria = new userCats;
+		$categoria = new Usercat;
 		$categoria->userinf_id = 1;
 		$categoria->catCarta_id = 2;
 		$categoria->save();
 
-		$categoria = new userCats;
+		$categoria = new Usercat;
 		$categoria->userinf_id = 2;
 		$categoria->catCarta_id = 7;
 		$categoria->save();

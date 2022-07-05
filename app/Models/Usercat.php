@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class userCats extends Model
+class Usercat extends Model
 {
     use HasFactory;
 	public $timestamps = false;
@@ -15,8 +15,13 @@ class userCats extends Model
 		return $this->belongsTo(userinf::class, 'id');
 	}
 
-	public function categorias()
+	public function categoria()
 	{
 		return $this->belongsTo(categorias_cartas::class, 'id');
+	}
+
+	public function categorias()
+	{
+		return $this->hasManyThrough(categorias_cartas::class, userinf::class);
 	}
 }
