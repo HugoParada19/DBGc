@@ -10,7 +10,7 @@ class Usercat extends Model
     use HasFactory;
 	public $timestamps = false;
 
-	public function user()
+	public function userinf()
 	{
 		return $this->belongsTo(userinf::class, 'userinf_id');
 	}
@@ -18,10 +18,5 @@ class Usercat extends Model
 	public function categoria()
 	{
 		return $this->belongsTo(categorias_cartas::class, 'catCarta_id');
-	}
-
-	public function categorias()
-	{
-		return $this->hasOneThrough(categorias_cartas::class, userinf::class);
 	}
 }

@@ -17,8 +17,8 @@
 						Marca: {{ $viatura->marca }}<br>
 						Modelo: {{ $viatura->modelo }}<br>
 						Polo presente: {{ $viatura->polo->descricao }}<br>
-						Categoria requesitada: {{ $viatura->categorias->categoria }}<br>
-						Categoria do utilizador: {{ $usercat->categorias->categoria }}
+						Categoria requesitada: {{ $viatura->categoria->categoria }}<br>
+						Categoria do utilizador: {{ $user->usercat->categoria }}
 					</x-slot>
 				</x-frontend.card>
 			</div>

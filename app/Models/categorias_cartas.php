@@ -17,6 +17,6 @@ class categorias_cartas extends Model
 
 	public function Usercat()
 	{
-		return $this->hasMany(Usercat::class);
+		return $this->hasMany(Usercat::class, 'catCarta_id');
 	}
 }

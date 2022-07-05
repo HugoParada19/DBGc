@@ -26,7 +26,7 @@ class teachersController
 	public function requesting($id)
 	{
 		$viatura = Viaturas::find($id);
-		$usercat = Usercat::where('userinf_id', Auth::id())->with('categorias')->get();
-		return view('frontend.user.requesting', compact('viatura', 'usercat'));
+		$user = userinf::where('id', Auth::id())->with('usercat.categoria')->get();
+		return view('frontend.user.requesting', compact('viatura', 'user'));
 	}
 }
