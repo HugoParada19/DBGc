@@ -21,8 +21,8 @@ class userinf extends Model
 		return $this->belongsTo(Polos::class, 'polo_id');
 	}
 
-	public function usercat()
+	public function usercats()
 	{
-		return $this->hasOne(Usercat::class, 'userinf_id');
+		return $this->hasMany(Usercat::class, 'userinf_id');
 	}
 }

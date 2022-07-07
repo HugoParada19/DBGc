@@ -16,6 +16,7 @@ class CreateUsercatsTable extends Migration
         Schema::create('usercats', function (Blueprint $table) {
 			$table->foreignId('userinf_id')->constrained('userinfs');
 			$table->foreignId('catCarta_id')->constrained('categorias_cartas');
+			$table->dateTime('validity');
         });
     }
 
