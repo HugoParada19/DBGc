@@ -13,13 +13,21 @@
 
 					<x-slot name="body">
 						<h2>Informação:</h2><br><br>
-						<form method="POST" action="reqAction">
+						<form method="POST" action="reqAct">
 						@csrf
 						Matricula: <label name="matricula">{{ $viatura->matricula }}</label><br>
 						Marca: <label name="marca">{{ $viatura->marca }}</label><br>
 						Modelo: <label name="modelo">{{ $viatura->modelo }}</label><br>
 						Polo presente: {{ $viatura->polo->descricao }}<br>
 						Categoria requesitada: {{ $viatura->categoria->categoria }}<br>
+						Data de entrega: <input type="date" name="dataHora_entrega"><br>
+						Introduza o seu objetivo: <input name="objetivo"><br>
+						Polo de entrega: <input list="cats" name="poloEntrega_id">
+						<datalist id="cats">
+						@foreach ($polos as $polo)
+							<option value="{{ $polo }}">
+						@endforeach
+						</datalist>
 						@foreach ($userinf[0]->usercats as $usercat)
 						@php ($success = false)
 						@if ($viatura->categoria->id == $usercat->categoria->id)
@@ -29,8 +37,9 @@
 						@endif
 						@endforeach
 						<br>
-						<label name="polos_id" color="white">{{ $viatura->polos_id }}</label>
+						<label name="polos_id" color="white">{{ $viatura->polo_id }}</label>
 						<label name="catCarta_id" color="white">{{ $viatura->catCarta_id }}</label>
+						<label name="id">{{ $viatura->id }}</label>
 						@if ($success && $viatura->requisited == false)
 							<br>
 							<x-utils.link

@@ -9,3 +9,23 @@ td
 	margin: 0;
 	padding: 0.5em;
 }
+
+button
+{
+	border-radius: 12px;
+	background-color: #ff0000;
+	color: white;
+}
+
+.negative
+{
+	background-color: #000066;
+}
+
+button:hover
+{
+	color: black;
+	background-color: white;
+}
+
+

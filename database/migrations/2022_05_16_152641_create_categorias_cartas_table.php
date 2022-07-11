@@ -16,6 +16,7 @@ class CreateCategoriasCartasTable extends Migration
         Schema::create('categorias_cartas', function (Blueprint $table) {
             $table->id();
 			$table->string('categoria');
+			$table->foreignId('polo_id')->constrained();
         });
     }
 
