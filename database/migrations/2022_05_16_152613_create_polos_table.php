@@ -15,7 +15,7 @@ class CreatePolosTable extends Migration
     {
         Schema::create('polos', function (Blueprint $table) {
             $table->id();
-			$table->string('designacao');
+			$table->string('designacao')->unique();
         });
     }
 

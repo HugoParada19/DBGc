@@ -47,9 +47,7 @@ Route::group(['as' => 'user.', 'middleware' => ['auth', 'password.expires', conf
 
 	Route::post('vehicules/request/apply', [teachersController::class,'reqAct']);
 
-	Route::get('vehicules/request/cancel/{id}', [teachersController::class, 'stopPayment']);
-
-	Route::post('vehicules/request/apply/confirm', [teachersController::class, 'applyIt']);
+	Route::post('vehicules/request/apply/apply', [teachersConroller::class,'applyIt']);
 
     Route::patch('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });

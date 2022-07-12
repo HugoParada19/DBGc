@@ -25,7 +25,7 @@
 						Polo de entrega: <input list="cats" name="poloEntrega_id">
 						<datalist id="cats">
 						@foreach ($polos as $polo)
-							<option value="{{ $polo }}">
+							<option value="{{ $polo->designacao }}">
 						@endforeach
 						</datalist>
 						@foreach ($userinf[0]->usercats as $usercat)
@@ -42,14 +42,12 @@
 						<label name="id">{{ $viatura->id }}</label>
 						@if ($success && $viatura->requisited == false)
 							<br>
-							<x-utils.link
-								text="requisitar"
-								class="nav-link active"
-								data-toggle="pill"
-								href="{{ URL('vehicules/request/done') }}" 
-								role="tab" />
+							<button type="submit">requisitar</button>
 						@else
-							<script>alert("Impossivel requisitar este vehiculo devido a incompatibilidades na categoria da carta de condução, ou a viatura está neste momento requesitada.")</script>
+							<script>
+								alert("Impossivel requisitar este vehiculo devido a incompatibilidades na categoria da carta de condução, ou a viatura está neste momento requesitada.");
+								history.back();
+							</script>
 						@endif
 						</form>
 					</x-slot>
