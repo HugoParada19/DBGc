@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Polos;
 use App\Models\categorias_cartas;
 use App\Models\Viaturas;
+use App\Models\marcacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
@@ -126,5 +127,11 @@ class colecoesController
 		$viaturas = DB::table('viaturas')->get();
 
 		return view('backend.colecoes.viaturas', compact('viaturas'))->with('requested', true);
+	}
+
+	public function requisicoes()
+	{
+		$marcacoes = marcacao::all();
+		return view('typical view')->with('marcacoes', $marcacoes);
 	}
 }

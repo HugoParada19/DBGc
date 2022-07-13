@@ -10,3 +10,8 @@ function iCanExist(rested)
 	
 	changeURL(rested);
 }
+
+function getMarcInfo(id)
+{
+	document.getElementById('DT').value = "{{ $marcacoes(" + id + ")->dataHora_levantar  }}";
+}
