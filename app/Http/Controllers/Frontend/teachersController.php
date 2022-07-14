@@ -8,7 +8,7 @@ use App\Models\userinf;
 use App\Models\marcacao;
 use App\Models\Polos;
 use Illuminate\Support\Facades\Auth;
-use date;
+use DateTime;
 
 class teachersController
 {
@@ -40,20 +40,39 @@ class teachersController
 		$user = Auth::user();
 		$marcar = new marcacao;
 		$marcar->user_id = $user->id;
-		$marcar->poloLevantar_id = $request->polo_id;
-		$marcar->dataHora_levantar = new date('d-m-y h:i:s');
+		foreach ($polos as $polo)
+		{
+			if ($request->poloEntrega_id == $polo->designacao)
+			{
+				$marcar->poloEntrega_id = $polo->id;
+				break;
+			}
+		}
+		$marcar->dataHora_levantar = new \DateTime('NOW');
 		$marcar->dataHora_entrega = $request->dataHora_entrega;
 		$marcar->objetivo = $request->objetivo;
 		$marcar->viatura_id = $request->id;
+		$viatura = Viaturas::find($request->id);
+		foreach ($polos as $polo)
+		{
+			if ($viatura->polos_id == $polo->id)
+			{
+				$marcar->poloLevantar_id = $polo->id;
+				break;
+			}
+		}
 		foreach ($polos as $polo)
 		{
 			if ($polo->designacao == $request->poloEntrega_id)
 			{
-				$marcar->poloEntrega_id = $polo->designacao;
+				$marcar->poloEntrega_id = $polo->id;
 				break;
 			}
 		}
-		$marcar->timestamps = new date('d-m-y h:i:s');
+		$viatura = null;
+		$polos = null;
+		$user = null;
+		$marcar->timestamps = new \DateTime('NOW');
 		$marcar->save();
 
 		return view('frontend.user.vehicules');

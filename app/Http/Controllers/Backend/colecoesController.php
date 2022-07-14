@@ -7,6 +7,7 @@ use App\Models\Polos;
 use App\Models\categorias_cartas;
 use App\Models\Viaturas;
 use App\Models\marcacao;
+use App\Models\requisicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
@@ -132,6 +133,21 @@ class colecoesController
 	public function requisicoes()
 	{
 		$marcacoes = marcacao::all();
-		return view('typical view')->with('marcacoes', $marcacoes);
+		return view('backend.colecoes.requisicoes')->with('marcacoes', $marcacoes);
+	}
+
+	public function requisitar(Request $request)
+	{
+		$requisicao = new requisicao;
+		$requisicao->marcacao_id = $request->marcacao_id->id;
+		$requisicao->dataHora_levantar = $request->dataHora_levantar;
+		$requisicao->dataHora_entrega = $request->dataHora_entrega;
+		$requisicao->kmAntes = $request->kmAntes;
+		$requisicao->kmDepois = $request->kmDepois;
+		$requisicao->notas = $request->notas;
+		$requisicao->objetivo = $request->objetivo;
+		$requisicao->save();
+
+		return view('backend.colecoes.index');
 	}
 }

@@ -20,7 +20,7 @@ class CreateRequisicaosTable extends Migration
 			$table->dateTime('dataHora_entrega');
 			$table->integer('kmAntes');
 			$table->integer('kmDepois')->nullable();
-			$table->string('notas');
+			$table->text('notas');
 			$table->string('objetivo');
             $table->timestamps();
         });

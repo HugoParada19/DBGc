@@ -69,8 +69,18 @@ Route::get('colecoes/viaturas/create', [colecoesController::class,'cViaMenu'])
 			->push(__('Home'), route('admin.colecoes.viaturas.create'));
 	});
 
+Route::get('colecoes/viaturas/requisicoes', [colecoesController::class,'requisicoes'])
+	->name('colecoes.viaturas.requisicoes')
+	->breadcrumbs(function (Trail $trail)
+	{
+		$trail->parent('admin.colecoes.viaturas')
+			->push(__('Home'), route('admin.colecoes.viaturas.requisicoes'));
+	});
+
 Route::post('colecoes/polos/create', [colecoesController::class,'createPolo']);
 
 Route::post('colecoes/categorias/create', [colecoesController::class,'createCat']);
 
 Route::post('colecoes/viaturas/create', [colecoesController::class,'createVia']);
+
+Route::post('colecoes/viaturas/requisicoes', [colecoesController::class,'requisitar']);
