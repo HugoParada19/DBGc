@@ -130,16 +130,17 @@ class colecoesController
 		return view('backend.colecoes.viaturas', compact('viaturas'))->with('requested', true);
 	}
 
-	public function requisicoes()
+	public function reqsView()
 	{
 		$marcacoes = marcacao::all();
-		return view('backend.colecoes.requisicoes')->with('marcacoes', $marcacoes);
+		return view('backend.colecoes.reqs')->with('marcacoes', $marcacoes);
 	}
 
 	public function requisitar(Request $request)
 	{
 		$requisicao = new requisicao;
-		$requisicao->marcacao_id = $request->marcacao_id->id;
+		$jsonDec = json_decode($request->marcacao_id);
+		$requisicao->marcacao_id = $jsonDec->id;
 		$requisicao->dataHora_levantar = $request->dataHora_levantar;
 		$requisicao->dataHora_entrega = $request->dataHora_entrega;
 		$requisicao->kmAntes = $request->kmAntes;
@@ -149,5 +150,10 @@ class colecoesController
 		$requisicao->save();
 
 		return view('backend.colecoes.index');
+	}
+
+	public function manageUsers()
+	{
+		 return view('backend.colecoes.manUsers');
 	}
 }

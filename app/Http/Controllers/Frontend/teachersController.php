@@ -69,12 +69,13 @@ class teachersController
 				break;
 			}
 		}
+		$marcar->timestamps = new \DateTime('NOW');
+		$marcar->save();
+		$viatura->requisited = 1;
+		$viatura->save();
 		$viatura = null;
 		$polos = null;
 		$user = null;
-		$marcar->timestamps = new \DateTime('NOW');
-		$marcar->save();
-
 		return view('frontend.user.vehicules');
 	}
 }

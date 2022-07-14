@@ -13,10 +13,10 @@
 
 					<x-slot name="body">
 						<x-utils.link
-							text="Option 1"
+							text="Requesitar"
 							class="nav-link active"
 							data-toggle="pill"
-							href="#"
+							:href="route('frontend.user.vehicules.request')"
 							role="tab" />
 						<x-utils.link
 							text="Option 2"

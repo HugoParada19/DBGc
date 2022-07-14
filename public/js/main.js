@@ -11,7 +11,12 @@ function iCanExist(rested)
 	changeURL(rested);
 }
 
-function getMarcInfo(id)
+function changeThis()
 {
-	document.getElementById('DT').value = "{{ $marcacoes(" + id + ")->dataHora_levantar  }}";
+	const obj = JSON.parse(document.getElementById('marcacao').value);
+	date = new Date(obj.dataHora_levantar);
+	let dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+                    .toISOString()
+                    .split("T")[0];
+	document.getElementById('dataHora').value = dateString;
 }

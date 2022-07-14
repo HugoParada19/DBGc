@@ -1,8 +1,8 @@
-@extends ('backend.layouts.app')
+@extends('backend.layouts.app')
 
-@section ('title', 'colecoes.polos.create')
+@section('title', 'colecoes.requisicoes')
 
-@section ('content')
+@section('content')
 	<x-backend.card>
 		<x-slot name="header">
 			@lang ('Welcome :Name', ['name' => $logged_in_user->name])
@@ -11,21 +11,22 @@
 
 		<x-slot name="body">
 			<form method="POST">
+				@csrf
 				<label for="marcacao_id">Id da marcação: </label>
-				<input list="marcacoes" name="marcacao_id">
+				<input list="marcacoes" name="marcacao_id" onChange="changeThis()" id="marcacao">
 				<datalist id="marcacoes">
 					@foreach ($marcacoes as $marcacao)
-						<option value="{{ $marcacao }}" onChange="getMarcInfo({{ $marcacao->id }})">
+						<option>{"id":"{{ $marcacao->id }}", "objetivo":"{{ $marcacao->objetivo }}", "dataHora_levantar":"{{ $marcacao->dataHora_levantar }}"}</option>
 					@endforeach
 				</datalist><br>
 				<label for="dataHora_levantar">Data e Hora em que foi requisitado o vehiculo:</label>
-				<input type="datetime-local" name="dataHora_levantar" id="DT"><br>
+				<input type="date" name="dataHora_levantar" id="dataHora"><br>
 				<label for="dataHora_entrega">Data e Hora em que o vehiculo vai ser entregue: </label>
-				<input type="datetime-local" name="dataHora_entrega"><br>
+				<input type="date" name="dataHora_entrega"><br>
 				<label for="kmAntes">Kilometros antes de ter sido requesitado</label>
 				<input type="text" name="kmAntes"><br>
 				<label for="kmDepois">Kilometros depois do vehiculo ter sido requesitado (se este vehiculo ainda não foi entregue, pode deixar este campo em branco)</label>
-				<input type="datetime-local" name="dataHora_levantar"><br>
+				<input type="text" name="kmDepois"><br>
 				<label for="notas">Quaisquer notas, devem ser colocadas aqui: </label>
 				<textarea name="notas"></textarea><br>
 				<label for="objetivo">Objetivo nesta requisicao: </label>

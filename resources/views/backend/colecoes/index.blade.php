@@ -24,6 +24,10 @@
 					class="card-header-action"
 					:href="route('admin.colecoes.viaturas')"
 					text="Viaturas" />
+				<x-utils.link
+					class="card-header-action"
+					:href="route('admin.colecoes.reqs')"
+					text="Requisições" />
 			</ul>
 		</x-slot>
 	</x-backend.card>
