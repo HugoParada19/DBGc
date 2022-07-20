@@ -43,6 +43,18 @@ Route::group(['as' => 'user.', 'middleware' => ['auth', 'password.expires', conf
 				->push(__('Dashboard'), route('frontend.user.vehicules.request'));
 		});
 
+	Route::get('vehicules/requisitions', [teachersController::class,'requisitions'])
+		->name('vehicules.requisitions')
+		->breadcrumbs(function (Trail $trail)
+		{
+			$trail->parent('frontend.index')
+				->push(__('Dashboard'), route('frontend.user.vehicules.requisitions'));
+		});
+
+	Route::get('vehicules/requisitions/{id}/edit', [teachersController::class,'editReq']);
+
+	Route::get('vehicules/requisitions/{id}/cancel', [teachersController::class,'cancelReq']);
+
 	Route::get('vehicules/request/{id}', [teachersController::class,'requesting']);
 
 	Route::post('vehicules/request/apply', [teachersController::class,'reqAct']);

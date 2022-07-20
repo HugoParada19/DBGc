@@ -18,4 +18,9 @@ class Viaturas extends Model
 	{
 		return $this->belongsTo(categorias_cartas::class, 'catCarta_id');
 	}
+
+	public function marcacaos()
+	{
+		return $this->belongsTo(marcacao::class);
+	}
 }

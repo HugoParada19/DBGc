@@ -19,4 +19,9 @@ class Polos extends Model
 	{
 		return $this->hasMany(userinf::class);
 	}
+
+	public function marcacaos()
+	{
+		return $this->hasMany(marcacao::class);
+	}
 }

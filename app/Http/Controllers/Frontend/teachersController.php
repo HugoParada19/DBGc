@@ -48,7 +48,7 @@ class teachersController
 				break;
 			}
 		}
-		$marcar->dataHora_levantar = new \DateTime('NOW');
+		$marcar->dataHora_levantar = $request->dataHora_levantar;
 		$marcar->dataHora_entrega = $request->dataHora_entrega;
 		$marcar->objetivo = $request->objetivo;
 		$marcar->viatura_id = $request->id;
@@ -77,5 +77,29 @@ class teachersController
 		$polos = null;
 		$user = null;
 		return view('frontend.user.vehicules');
+	}
+
+	public function requisitions()
+	{
+		$marcacoes = marcacao::where('user_id', Auth::id())->with('viatura')->with('polo')->get();
+
+		return view('frontend.user.myReqs')->with('marcacoes', $marcacoes);
+	}
+
+	public function editReq($id)
+	{
+		$marcacao = marcacao::find($id);
+		$viaturas = Viaturas::all();
+		$polos = Polos::all();
+
+		return view('frontend.user.editReq', compact('marcacao', 'viaturas', 'polos'));
+	}
+
+	public function cancelReq($id)
+	{
+		$marcacao = marcacao::find($id);
+		$marcacao->delete();
+
+		return redirect()->back();
 	}
 }

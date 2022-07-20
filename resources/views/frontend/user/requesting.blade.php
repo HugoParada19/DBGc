@@ -21,7 +21,8 @@
 						Modelo: <input readonly="readonly" name="modelo" value="{{ $viatura->modelo }}"><br>
 						Polo presente: {{ $viatura->polo->designacao }}<br>
 						Categoria requesitada: {{ $viatura->categoria->categoria }}<br>
-						Data de entrega: <input type="date" name="dataHora_entrega"><br>
+						Data de requisição: <input type="datetime-local" name="dataHora_levantar"><br>
+						Data de entrega: <input type="datetime-local" name="dataHora_entrega"><br>
 						Introduza o seu objetivo: <input name="objetivo"><br>
 						Polo de entrega: <input list="cats" name="poloEntrega_id">
 						<datalist id="cats">
@@ -38,9 +39,9 @@
 						@endif
 						@endforeach
 						<br>
-						<label name="poloLevantar_id" color="white">{{ $viatura->polo->designacao }}</label>
-						<label name="catCarta_id" color="white">{{ $viatura->categoria->categoria }}</label>
-						<label name="id">{{ $viatura->id }}</label>
+						<label for="poloLevantar_id" color="white">{{ $viatura->polo->designacao }}</label>
+						<label for="catCarta_id" color="white">{{ $viatura->categoria->categoria }}</label>
+						<label for="id">{{ $viatura->id }}</label>
 						@if ($success && $viatura->requisited == false)
 							<br>
 							<button type="submit">requisitar</button>
