@@ -61,5 +61,7 @@ Route::group(['as' => 'user.', 'middleware' => ['auth', 'password.expires', conf
 
 	Route::post('vehicules/request/apply/apply', [teachersConroller::class,'applyIt']);
 
+	Route::post('vehicules/requisitions/{id}/edit', [teachersController::class,'edittingReq']);
+
     Route::patch('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });

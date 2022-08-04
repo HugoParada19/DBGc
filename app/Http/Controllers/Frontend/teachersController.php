@@ -8,10 +8,13 @@ use App\Models\userinf;
 use App\Models\marcacao;
 use App\Models\Polos;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use DateTime;
 
 class teachersController
 {
+	use ValidatesRequests;
+
 	public function index()
 	{
 		return view('frontend.user.vehicules');
@@ -92,7 +95,12 @@ class teachersController
 		$viaturas = Viaturas::all();
 		$polos = Polos::all();
 
-		return view('frontend.user.editReq', compact('marcacao', 'viaturas', 'polos'));
+		$dataChangable = true;
+		$now = new \DateTime('NOW');
+		if ($marcacao->dataHora_levantar < $now)
+			$dataChangable = false;
+
+		return view('frontend.user.editReq', compact('marcacao', 'viaturas', 'polos', 'dataChangable'));
 	}
 
 	public function cancelReq($id)
@@ -101,5 +109,50 @@ class teachersController
 		$marcacao->delete();
 
 		return redirect()->back();
+	}
+
+	public function edittingReq(Request $request)
+	{
+		$this->validate($request, 
+			[
+				'id' => 'required',
+				'dataHora_levantar' => 'required',
+				'dataHora_entrega' => 'required'
+			]);
+		// Setting up variables for search
+		$viaturas = Viaturas::all();
+		$polos = Polos::all();
+
+		$marcacao = marcacao::find($request->id);
+		$marcacao->dataHora_levantar = $request->dataHora_levantar;
+		$marcacao->dataHora_entrega = $request->dataHora_entrega;
+
+		if ($request->viatura != null)
+		{
+			foreach ($viaturas as $viatura)
+			{
+				if ($viatura->matricula == $request->viatura)
+				{
+					$marcacao->viatura_id = $viatura->id;
+					break;
+				}
+			}
+		}
+		if ($request->polo != null)
+		{
+			foreach ($polos as $polo)
+			{
+				if ($polo->designacao == $request->polo)
+				{
+					$marcacao->polos_id = $polo->id;
+					break;
+				}
+			}
+		}
+
+		$marcacao->objetivo = $request->objetivo;
+		$marcacao->save();
+
+		return redirect()->route('vehicules.requisitions');
 	}
 }

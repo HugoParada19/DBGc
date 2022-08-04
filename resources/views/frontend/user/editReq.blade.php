@@ -14,18 +14,21 @@
 					<x-slot name="body">
 						<h2>Editar conteudo</h2>
 
-						<form action="POST">
+						<form method="POST">
 							@csrf
 							<label for="id">Id: </label>
 							<input name="id" value="{{ $marcacao->id }}" readonly="readonly"><br>
 							<label for="dataHora_levantar">Data e hora de levantamento</label>
+							@if ($dataChangable)
 							<input name="dataHora_levantar" value="{{ $marcacao->dataHora_levantar }}"><br>
-
+							@else
+							<input name="dataHora_levantar" value="{{ $marcacao->dataHora_levantar }}" readonly="readonly"><br>
+							@endif
 							<label for="dataHora_entrega">Data e hora de entrega</label>
 							<input name="dataHora_entrega" value="{{ $marcacao->dataHora_entrega }}"><br>
 
 							<label for="objetivo">Objetivo: </label>
-							<input name="objetivo" value="$marcacao->objetivo"><br>
+							<input name="objetivo" value="{{ $marcacao->objetivo }}"><br>
 
 							<label for="viatura">Veículo escolhido</label>
 							<input list="viats" name="viatura" placeholder="{{ $marcacao->viatura->matricula }}">

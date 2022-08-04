@@ -36,8 +36,8 @@
 									<td>{{ $marcacao->objetivo }}</td>
 									<td>{{ $marcacao->viatura->matricula }}</td>
 									<td>{{ $marcacao->polo->designacao }}</td>
-									<td><a href="{{ URL('vehicules/requisitions/{id}/edit') }}">Editar</a></td>
-									<td><a href="{{ URL('vehicules/requisitions/{id}/cancel') }}">Cancelar</a></td>
+									<td><a href="{{ URL('vehicules/requisitions/' . $marcacao->id . '/edit') }}">Editar</a></td>
+									<td><a href="{{ URL('vehicules/requisitions/' . $marcacao->id . '/cancel') }}">Cancelar</a></td>
 								</tr>
 							@endforeach
 						</table>
