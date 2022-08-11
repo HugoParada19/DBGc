@@ -11,6 +11,7 @@ use App\Models\requisicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\userinf;
+use Database\Seeders\UserCathegories;
 use DateTime;
 
 /*
@@ -161,11 +162,17 @@ class colecoesController
 	public function manageUsers()
 	{
 		$informacoes = userinf::all();
-		return view('backend.colecoes.manusers', compact('informacoes'));
+		$subinformacoes = UserCathegories::all();
+		return view('backend.colecoes.manusers', compact('informacoes', 'subinformacoes'));
 	}
 
 	public function manMarcView()
 	{
 		return view('backend.colecoes.manmarcs');
+	}
+
+	public function modifyManUser()
+	{
+		return view('backend.colecoes.changeUser');
 	}
 }

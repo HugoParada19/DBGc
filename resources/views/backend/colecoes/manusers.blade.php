@@ -25,11 +25,20 @@
 						<td>{{ $informacao->id }}</td>
 						<td>{{ $informacao->user_id }}</td>
 						<td>{{ $informacao->polo_id }}</td>
-						<td rowspan="{{ sizeof($informacao->id) }}">>{{ $informacao->role }}</td>
-						@foreach ($informacao->id as $subinformacao)
-							<td>{{ $subinformacao->catCarta_id }}</td>
-							<td>{{ $subinformacao->validity }}</td>
-						@endforeach
+						<td rowspan="{{ $informacao->numCats * 2 }}">>{{ $informacao->role }}</td>
+						@for ($i = 1; $i <= $informacao->numCats; $i++)
+							@foreach ($subinformacoes as $subinformacao)
+								@if ($subinformacao->userinf_id == $informacao->id)
+										<td>{{ $subinformacao->catCarta_id }}</td>
+									</tr>
+									<tr><td>{{ $subinformacao->validity }}</td></tr>
+								@endif
+							@endforeach
+							@if ($i != $informacao->numCats)
+								<tr>
+							@endif
+						@endfor
+						<a href="{{ URL('colecoes/manage/manageUsers/' . $informacao->id . '/modify') }}">modify it</a>
 					</tr>
 				@endforeach
 			</table>

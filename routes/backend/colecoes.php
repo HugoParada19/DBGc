@@ -101,6 +101,8 @@ Route::get('colecoes/manage/manageMarcacaos', [colecoesController::class,'manMar
 			->push(__('Home'), route('admin.colecoes.manage.manmarcs'));
 	});
 
+Route::get('colecoes/manage/manageUsers/{id}/modify', [colecoesController::class,'modifyManUser']);
+
 Route::post('colecoes/polos/create', [colecoesController::class,'createPolo']);
 
 Route::post('colecoes/categorias/create', [colecoesController::class,'createCat']);

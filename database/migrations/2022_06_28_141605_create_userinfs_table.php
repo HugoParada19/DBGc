@@ -17,6 +17,7 @@ class CreateUserinfsTable extends Migration
             $table->id();
 			$table->foreignId('user_id')->constrained('users');
 			$table->foreignId('polo_id')->constrained('polos')->nullable();
+			$table->integer('numCats')->nullable();
 			$table->string('role');
         });
     }
