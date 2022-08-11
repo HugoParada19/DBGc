@@ -28,6 +28,10 @@
 					class="card-header-action"
 					:href="route('admin.colecoes.reqs')"
 					text="Requisições" />
+				<x-utils.link
+					class="card-header-action"
+					:href="route('admin.colecoes.manage')"
+					text="Gestão de ações de utilizadores" />
 			</ul>
 		</x-slot>
 	</x-backend.card>

@@ -10,6 +10,7 @@ use App\Domains\Auth\Models\User;
 use App\Domains\Auth\Services\PermissionService;
 use App\Domains\Auth\Services\RoleService;
 use App\Domains\Auth\Services\UserService;
+use App\Jobs\CathegorizeUsers;
 
 /**
  * Class UserController.
@@ -74,6 +75,7 @@ class UserController
     public function store(StoreUserRequest $request)
     {
         $user = $this->userService->store($request->validated());
+		$this->dispatch(new CathegorizeUsers($user));
 
         return redirect()->route('admin.auth.user.show', $user)->withFlashSuccess(__('The user was successfully created.'));
     }

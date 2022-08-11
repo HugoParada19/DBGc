@@ -16,7 +16,7 @@ class CreateUserinfsTable extends Migration
         Schema::create('userinfs', function (Blueprint $table) {
             $table->id();
 			$table->foreignId('user_id')->constrained('users');
-			$table->foreignId('polo_id')->constrained('polos');
+			$table->foreignId('polo_id')->constrained('polos')->nullable();
 			$table->string('role');
         });
     }

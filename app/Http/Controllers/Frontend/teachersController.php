@@ -9,6 +9,7 @@ use App\Models\marcacao;
 use App\Models\Polos;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Domains\Auth\Models\User;
 use DateTime;
 
 class teachersController
@@ -106,7 +107,10 @@ class teachersController
 	public function cancelReq($id)
 	{
 		$marcacao = marcacao::find($id);
+		$viatura = Viaturas::find($marcacao->viatura_id);
 		$marcacao->delete();
+		$viatura->requisited = 0;
+		$viatura->save();
 
 		return redirect()->back();
 	}
@@ -152,6 +156,11 @@ class teachersController
 
 		$marcacao->objetivo = $request->objetivo;
 		$marcacao->save();
+		$viaturas = null;
+		$viaturas = Viaturas::find($marcacao->viatura_id);
+
+		$viaturas->requisited = 0;
+		$viaturas->save();
 
 		return redirect()->route('vehicules.requisitions');
 	}

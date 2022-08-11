@@ -19,18 +19,11 @@
 							:href="route('frontend.user.vehicules.request')"
 							role="tab" />
 						<x-utils.link
-							text="Option 2"
+							text="Ver veiculos requisitados"
 							class="nav-link active"
 							data-toggle="pill"
-							href="#"
+							:href="route('frontend.user.vehicules.requisitions')"
 							role="tab" />
-						<x-utils.link
-							text="Option 3"
-							class="nav-link active"
-							data-toggle="pill"
-							href="#"
-							role="tab" />
-
 					</x-slot>
 				</x-frontend.card>
 			</div>

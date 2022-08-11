@@ -77,6 +77,30 @@ Route::get('colecoes/reqs', [colecoesController::class,'reqsView'])
 			->push(__('Home'), route('admin.colecoes.reqs'));
 	});
 
+Route::get('colecoes/manage', [colecoesController::class,'manageView'])
+	->name('colecoes.manage')
+	->breadcrumbs(function (Trail $trail)
+	{
+		$trail->parent('admin.colecoes')
+			->push(__('Home'), route('admin.colecoes.manage'));
+	});
+
+Route::get('colecoes/manage/manageUsers', [colecoesController::class,'manageUsers'])
+	->name('colecoes.manage.manusers')
+	->breadcrumbs(function (Trail $trail)
+	{
+		$trail->parent('admin.colecoes.manage')
+			->push(__('Home'), route('admin.colecoes.manage.manusers'));
+	});
+
+Route::get('colecoes/manage/manageMarcacaos', [colecoesController::class,'manMarcView'])
+	->name('colecoes.manage.manmarcs')
+	->breadcrumbs(function (Trail $trail)
+	{
+		$trail->parent('admin.colecoes.manage')
+			->push(__('Home'), route('admin.colecoes.manage.manmarcs'));
+	});
+
 Route::post('colecoes/polos/create', [colecoesController::class,'createPolo']);
 
 Route::post('colecoes/categorias/create', [colecoesController::class,'createCat']);

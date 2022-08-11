@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section ('title', colecoes)
+@section ('title', 'colecoes.manage.manusers')
 
 @section ('content')
 	<x-backend.card>
@@ -21,7 +21,16 @@
 					<td>Modificar</td>
 				</tr>
 				@foreach ($informacoes as $informacao)
-
+					<tr>
+						<td>{{ $informacao->id }}</td>
+						<td>{{ $informacao->user_id }}</td>
+						<td>{{ $informacao->polo_id }}</td>
+						<td rowspan="{{ sizeof($informacao->id) }}">>{{ $informacao->role }}</td>
+						@foreach ($informacao->id as $subinformacao)
+							<td>{{ $subinformacao->catCarta_id }}</td>
+							<td>{{ $subinformacao->validity }}</td>
+						@endforeach
+					</tr>
 				@endforeach
 			</table>
 		</x-slot>

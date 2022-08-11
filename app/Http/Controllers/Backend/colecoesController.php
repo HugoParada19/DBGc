@@ -10,6 +10,7 @@ use App\Models\marcacao;
 use App\Models\requisicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\userinf;
 use DateTime;
 
 /*
@@ -152,8 +153,19 @@ class colecoesController
 		return view('backend.colecoes.index');
 	}
 
+	public function manageView()
+	{
+		return view('backend.colecoes.manage');
+	}
+
 	public function manageUsers()
 	{
-		 return view('backend.colecoes.manUsers');
+		$informacoes = userinf::all();
+		return view('backend.colecoes.manusers', compact('informacoes'));
+	}
+
+	public function manMarcView()
+	{
+		return view('backend.colecoes.manmarcs');
 	}
 }
