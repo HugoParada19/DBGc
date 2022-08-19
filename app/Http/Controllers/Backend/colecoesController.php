@@ -7,11 +7,11 @@ use App\Models\Polos;
 use App\Models\categorias_cartas;
 use App\Models\Viaturas;
 use App\Models\marcacao;
+use App\Models\Usercat;
 use App\Models\requisicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\userinf;
-use Database\Seeders\UserCathegories;
 use DateTime;
 
 /*
@@ -161,8 +161,8 @@ class colecoesController
 
 	public function manageUsers()
 	{
-		$informacoes = userinf::all();
-		$subinformacoes = UserCathegories::all();
+		$informacoes = userinf::with('polo')->get();
+		$subinformacoes = Usercat::with('categoria')->get();
 		return view('backend.colecoes.manusers', compact('informacoes', 'subinformacoes'));
 	}
 
