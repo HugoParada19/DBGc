@@ -93,6 +93,10 @@ Route::get('colecoes/manage/manageUsers', [colecoesController::class,'manageUser
 			->push(__('Home'), route('admin.colecoes.manage.manusers'));
 	});
 
+Route::get('colecoes/manage/manageUsers/{id}/modify', [colecoesController::class,'modifyManUser']);
+
+Route::get('colecoes/manage/manageUsers/{userId}/modify/{cathegoryId}/edit', [colecoesController::class,'editSpecificCathegory']);
+
 Route::get('colecoes/manage/manageMarcacaos', [colecoesController::class,'manMarcView'])
 	->name('colecoes.manage.manmarcs')
 	->breadcrumbs(function (Trail $trail)
@@ -100,8 +104,6 @@ Route::get('colecoes/manage/manageMarcacaos', [colecoesController::class,'manMar
 		$trail->parent('admin.colecoes.manage')
 			->push(__('Home'), route('admin.colecoes.manage.manmarcs'));
 	});
-
-Route::get('colecoes/manage/manageUsers/{id}/modify', [colecoesController::class,'modifyManUser']);
 
 Route::post('colecoes/polos/create', [colecoesController::class,'createPolo']);
 

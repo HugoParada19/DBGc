@@ -12,6 +12,7 @@ use App\Models\requisicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\userinf;
+use App\Domains\Auth\Models\User;
 use DateTime;
 
 /*
@@ -171,8 +172,91 @@ class colecoesController
 		return view('backend.colecoes.manmarcs');
 	}
 
-	public function modifyManUser()
+	public function modifyManUser($id)
 	{
-		return view('backend.colecoes.changeUser');
+		$informacao = userinf::find($id);
+		$subinformacoes = Usercat::with('categoria')->get();
+		$polos = Polos::all();
+		$catCartas = categorias_cartas::all();
+
+		return view('backend.colecoes.changeUser', compact('informacao', 'subinformacoes', 'polos', 'catCartas'));
+	}
+
+	public function destroyCatCarta($id)
+	{
+		Usercat::find($id)->delete();
+
+		return redirect()->route('backend.colecoes.changeUser');
+	}
+
+	public function viewOldCatCart($id)
+	{
+		$userinf = Usercat::where('id', $id)->with('categoria')->get();
+		$catCartas = categorias_cartas::all();
+
+		return view('backend.colecoes.editCarta', compact('catCartas', 'userinf'));
+	}
+
+	public function createNewCatCart($id)
+	{
+		$user = User::find($id);
+		$catCartas = categorias_cartas::all();
+		$usercat = Usercat::all();
+		$highestNum = $usercat->count();
+
+		return view('backend.colecoes.createCarta', compact('user', 'catCartas', 'usercat', 'highestNum'));
+	}
+
+	public function changeCatCart(Request $request)
+	{
+		$catCartas = Usercat::find($request->id);
+		$categorias = categorias_cartas::all();
+
+		$catCartas->catCarta_id = $request->catCarta_id;
+		$catnum = 0;
+		foreach ($categorias as $categoria)
+		{
+			if ($categoria->categoria == $request->categoria)
+			{
+				$catnum = $categoria->id;
+				break;
+			}
+		}
+		$catCarta->categoria = $catnum;
+		$catCartas->validity = $request->validity;
+		$catCarta->save();
+
+		return redirect()->route('backend.colecoes.changeUser');
+	}
+
+	public function createCatCarta(Request $request)
+	{
+		$catCartas = categorias_cartas::all();
+		$usercat = new Usercat;
+		
+		$usercat->userinf_id = $request->userinf_id;
+		$catnum = 0;
+		foreach ($catCartas as $catCarta)
+		{
+			if ($catCarta->designacao == $request->designacao)
+			{
+				$catnum = $catCarta->id;
+				break;
+			}
+		}
+		$usercat->categoria = $catnum;
+		$usercat->validity = $request->validity;
+		$usercat->save();
+
+		return redirect()->route('backend.colecoes.changeUser');
+	}
+
+	public function editSpecificCathegory($userId, $cathegoryId)
+	{
+		$user = User::find($userId);
+		$userCat = UserCat::find($cathegoryId);
+		$categorias = categorias_cartas::all();
+
+		return view('backend.colecoes.specific', compact('user', 'userCat', 'categorias'));
 	}
 }

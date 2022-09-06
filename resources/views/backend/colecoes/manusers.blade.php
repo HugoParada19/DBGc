@@ -35,7 +35,8 @@
 												<td>Categoria da carta:</td>
 												<td>{{ $subinformacao->categoria->categoria }}</td>
 												@if ($i == 1)
-													<td rowspan="{{ $informacao->numCats * 2 }}"><a href="{{ URL('colecoes/manage/manageUsers/' . $informacao->id . '/modify') }}">modify it</a></td>
+													<td rowspan="{{ $informacao->numCats * 2 }}"><a href="{{ URL('admin/colecoes/manage/manageUsers/' . $informacao->id . '/modify') }}">modify it</a></td>
+													<td rowspan="{{ $informacao->numCats * 2 }}"><a href="URL('admin/colecoes/manage/manageUsers/' . $informacao->id . '/addCards')">Adicionar tipos de carta.</a></td>
 												@endif
 											</tr>
 											<tr>
