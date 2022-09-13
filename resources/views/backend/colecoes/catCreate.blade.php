@@ -13,8 +13,8 @@
 			<form method="POST">
 				@csrf
 				<label for="categoria">Introduza a categorias:</label><br><br>
-				<input type="text" name="categoria"><br>
-				<input type="submit">
+				<input type="text" name="categoria"><br><br>
+				<input type="submit"><br><br>
 			</form>
 			<x-utils.link
 				class="card-header-action"

@@ -166,12 +166,7 @@ class colecoesController
 		$subinformacoes = Usercat::with('categoria')->get();
 		return view('backend.colecoes.manusers', compact('informacoes', 'subinformacoes'));
 	}
-
-	public function manMarcView()
-	{
-		return view('backend.colecoes.manmarcs');
-	}
-
+	
 	public function modifyManUser($id)
 	{
 		$informacao = userinf::find($id);
@@ -186,7 +181,8 @@ class colecoesController
 	{
 		Usercat::find($id)->delete();
 
-		return redirect()->route('backend.colecoes.changeUser');
+		//return redirect()->route('/admin/colecoes/manage/manageUsers');
+		return redirect()->action([colecoesController::class,'manageUsers']);
 	}
 
 	public function viewOldCatCart($id)
@@ -226,7 +222,8 @@ class colecoesController
 		$catCartas->validity = $request->validity;
 		$catCarta->save();
 
-		return redirect()->route('backend.colecoes.changeUser');
+		//return redirect()->route('/admin/colecoes/manage/manageUsers');
+		return redirect()->action([colecoesController::class,'manageUsers']);
 	}
 
 	public function createCatCarta(Request $request)
@@ -248,15 +245,116 @@ class colecoesController
 		$usercat->validity = $request->validity;
 		$usercat->save();
 
-		return redirect()->route('backend.colecoes.changeUser');
+		//return redirect()->route('/admin/colecoes/manage/manageUsers');
+		return redirect()->action([colecoesController::class,'manageUsers']);
 	}
 
 	public function editSpecificCathegory($userId, $cathegoryId)
 	{
 		$user = User::find($userId);
-		$userCat = UserCat::find($cathegoryId);
+		$usercat = UserCat::where('id', $cathegoryId)->with('categoria')->first();
 		$categorias = categorias_cartas::all();
 
-		return view('backend.colecoes.specific', compact('user', 'userCat', 'categorias'));
+		return view('backend.colecoes.specific', compact('user', 'usercat', 'categorias'));
+	}
+
+	public function applySpecificCathegory($userId, $cathegoryId, Request $request)
+	{
+		$userCat = Usercat::find($cathegoryId);
+		$categorias = categorias_cartas::all();
+
+		$num = 0;
+		foreach ($categorias as $categoria)
+		{
+			if ($categoria->categoria == $request->categoria)
+			{
+				$num = $categoria->id;
+				break;
+			}
+		}
+		$userCat->catCarta_id = $num;
+		$userCat->save();
+
+		//return redirect()->route('/admin/colecoes/manage/manageUsers');
+		return redirect()->action([colecoesController::class,'manageUsers']);
+	}
+
+	public function destroySpecificCathegory($userId, $cathegoryId)
+	{
+		UserCat::find($cathegoryId)->delete();
+		$userinf = userinf::find($userId);
+		$userinf->numCats -= 1;
+		$userinf->save();
+		
+		//return redirect()->route('/admin/colecoes/manage/manageUsers');
+		return redirect()->action([colecoesController::class,'manageUsers']);
+	}
+
+	public function inputCarta($userId)
+	{
+		$catCartas = categorias_cartas::all();
+		$userinf = userinf::find($userId);
+		$iCanExist = false;
+
+		return view('backend.colecoes.createCart', compact('catCartas', 'userinf', 'iCanExist'));
+	}
+
+	public function placeCarta($userId, Request $request)
+	{
+		$validated = $request->validate
+		([
+			'catCarta' => 'required|max:255',
+			'validity' => 'required',
+		]);
+		
+		$date = new DateTime('today');
+		if ($request->validity >= $date)
+		{
+			$catCartas = categorias_cartas::all();
+			$userinf = userinf::find($userId);
+			$iCanExist = true;
+			return view('backend.colecoes.createCart', compact('catCartas', 'userinf', 'iCanExist'));
+		}
+		else
+		{
+			$catCartas = categorias_cartas::all();
+			$usercat = new Usercat;
+			$usercat->userinf_id = $userId;
+			foreach ($catCartas as $catCarta)
+			{
+				if ($catCarta->categoria = $request->catCarta)
+				{
+					$usercat->catCarta_id = $catCarta->id;
+					break;
+				}
+			}
+			$usercat->validity = $request->validity;
+			$userinf = userinf::find($userId);
+			$userinf->numCats += 1;
+			$usercat->save();
+			$userinf->save();
+			return redirect()->action([colecoesController::class,'manageUsers']);
+		}
+	}
+	
+	public function manMarcView()
+	{
+
+		return view('backend.colecoes.manMarcs');
+	}
+
+	public function finishMarc($id)
+	{
+
+	}
+
+	public function destroyMarc($id)
+	{
+	
+	}
+
+	public function manageMarc($id)
+	{
+	
 	}
 }

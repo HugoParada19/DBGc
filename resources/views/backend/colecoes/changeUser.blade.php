@@ -16,8 +16,8 @@
 				@csrf
 				<label for="id">Id:</label>
 				<input name="id" placeholder="{{ $informacao->id }}" readonly="readonly"><br><br>
-				<label for="polo_id">{{ $informacao->polo_id }}</label>
-				<input list="polos" name="polo_id">
+				<label for="polo_id">Id do polo: </label>
+				<input list="polos" name="polo_id" placeholder="{{ $informacao->id }}">
 				<datalist id="polos">
 					@foreach ($polos as $polo)
 						<option value="{{ $polo->designacao }}"></option>
@@ -25,14 +25,14 @@
 				</datalist>
 				<label for="role">Cargo: </label>
 				<input name="role" placeholder="{{ $informacao->role }}"><br><br>
-				<label name="numCats" color ="white">{{ $informacao->numCats }}</label><br><br>
+				<label name="numCats" color ="white">Numero de categorias: {{ $informacao->numCats }}</label><br><br>
 
 				<table>
 								<tr>
 									<td>Nº da categoria</td>
 									<td>Nome da categoria</td>
 									<td>Modificar</td>
-									<td>Apagaar</td>
+									<td>Apagar</td>
 								</tr>
 				@for ($i = 1; $i <= $informacao->numCats; $i++)
 					@php ($ln=1)
@@ -42,8 +42,8 @@
 								<tr>
 									<td>{{ $subinformacao->categoria->id }}</td>
 									<td>{{ $subinformacao->categoria->categoria }}</td>
-									<td><a href="{{ URL('admin/colecoes/manage/manageUsers/' . $informacao->id . '/modify/' . $informacao->categoria . '/edit') }}">Modificar</a></td>
-									<td><a href="{{ URL('admin/colecoes/manage/manageUsers/' . $informacao->id . '/modify/' . $informacao->categoria . '/destroy') }}">Destruir</a></td>
+									<td><a href="{{ URL('admin/colecoes/manage/manageUsers/' . $informacao->id . '/modify/' . $subinformacao->id . '/edit') }}">Modificar</a></td>
+									<td><a href="{{ URL('admin/colecoes/manage/manageUsers/' . $informacao->id . '/modify/' . $subinformacao->id . '/destroy') }}">Destruir</a></td>
 								</tr>
 							@break
 						@else

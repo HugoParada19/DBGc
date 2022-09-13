@@ -97,6 +97,12 @@ Route::get('colecoes/manage/manageUsers/{id}/modify', [colecoesController::class
 
 Route::get('colecoes/manage/manageUsers/{userId}/modify/{cathegoryId}/edit', [colecoesController::class,'editSpecificCathegory']);
 
+Route::post('colecoes/manage/manageUsers/{userId}/modify/{cathegoryId}/edit', [colecoesController::class,'applySpecificCathegory']);
+
+Route::get('colecoes/manage/manageUsers/{userId}/modify/{cathegoryId}/destroy', [colecoesController::class,'destroySpecificCathegory']);
+
+Route::get('colecoes/manage/manageUsers/{userId}/addCards', [colecoesController::class,'inputCarta']);
+
 Route::get('colecoes/manage/manageMarcacaos', [colecoesController::class,'manMarcView'])
 	->name('colecoes.manage.manmarcs')
 	->breadcrumbs(function (Trail $trail)
@@ -105,6 +111,12 @@ Route::get('colecoes/manage/manageMarcacaos', [colecoesController::class,'manMar
 			->push(__('Home'), route('admin.colecoes.manage.manmarcs'));
 	});
 
+Route::get('colecoes/manage/manageMarcacaos/{id}/finish', [colecoesController::class,'finishMarc']);
+
+Route::get('colecoes/manage/manageMarcacaos/{id}/destroy', [colecoesController::class,'destroyMarc']);
+
+Route::get('colecoes/manage/manageMarcacaos/{id}/manage', [colecoesController::class,'manageMarc']);
+
 Route::post('colecoes/polos/create', [colecoesController::class,'createPolo']);
 
 Route::post('colecoes/categorias/create', [colecoesController::class,'createCat']);
@@ -112,3 +124,5 @@ Route::post('colecoes/categorias/create', [colecoesController::class,'createCat'
 Route::post('colecoes/viaturas/create', [colecoesController::class,'createVia']);
 
 Route::post('colecoes/reqs', [colecoesController::class,'requisitar']);
+
+Route::post('colecoes/manage/manageUsers/{userId}/addCards', [colecoesController::class,'placeCarta']);

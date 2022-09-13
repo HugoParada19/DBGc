@@ -14,16 +14,19 @@
 
 			<form method="POST">
 				@csrf
-				<label for="id">Id: </label>
-				<input name="id" placeholder="{{ $userCat->id }}" readonly="readonly"><br><br>
+				<label for="user_id">Id do utilizador: </label>
+				<input name="user_id" placeholder="{{ $user->id }}" readonly="readonly"><br><br>
+				<label for="cat_id">Id da categoria: </label>
+				<input name="cat_id" placeholder="{{ $usercat->id }}" readonly="readonly"><br><br>
 
 				<label for="categoria">Tipo de categoria de carta: </label>
-				<input list="categorias" name="categoria" placeholder="{{ $userCat->categoria->categoria }}">
+				<input list="categorias" name="categoria" placeholder="{{ $usercat->categoria->categoria }}">
 				<datalist id="categorias">
 					@foreach ($categorias as $categoria)
 						<option value="{{ $categoria->categoria }}">
 					@endforeach
-				</datalist>
+				</datalist><br><br>
+				<button type="submit">Submeter</button>
 			</form>
 		</x-slot>
 	</x-backend.card>
