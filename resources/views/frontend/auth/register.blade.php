@@ -45,6 +45,20 @@
                                 </div>
                             </div><!--form-group-->
 
+							<div class="form-group row"><!--cart-cathegory-system-->
+										<label for="cartNum" class="col-md-4 col-form-label text-md-right">Seu tipo de carta (pode adicionar outros pedindo a um administrador): </label>
+										<div class="col-md-6">
+												<input list="categoria" name="categorias" class="form-control" required />
+												<datalist id="categoria">
+													@foreach ($categorias as $categoria)
+														<option value="{{ $categoria->categoria }}">
+													@endforeach
+												</datalist>
+											</datalist>
+										</div>
+							</div>
+
+
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
@@ -55,7 +69,7 @@
                                     </div>
                                 </div>
                             </div><!--form-group-->
-
+							
                             @if(config('boilerplate.access.captcha.registration'))
                                 <div class="row">
                                     <div class="col">

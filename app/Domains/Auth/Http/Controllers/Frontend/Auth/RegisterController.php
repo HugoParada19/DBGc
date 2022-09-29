@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
+use App\Models\categorias_cartas;
 
 /**
  * Class RegisterController.
@@ -60,8 +61,9 @@ class RegisterController
     public function showRegistrationForm()
     {
         abort_unless(config('boilerplate.access.user.registration'), 404);
+		$categorias = categorias_cartas::all();
 
-        return view('frontend.auth.register');
+        return view('frontend.auth.register', compact('categorias'));
     }
 
     /**
@@ -77,6 +79,7 @@ class RegisterController
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
             'password' => array_merge(['max:100'], PasswordRules::register($data['email'] ?? null)),
             'terms' => ['required', 'in:1'],
+			'categorias' => ['required', 'string', 'categorias'],
             'g-recaptcha-response' => ['required_if:captcha_status,true', new Captcha],
         ], [
             'terms.required' => __('You must accept the Terms & Conditions.'),

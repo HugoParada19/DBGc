@@ -69,14 +69,6 @@ Route::get('colecoes/viaturas/create', [colecoesController::class,'cViaMenu'])
 			->push(__('Home'), route('admin.colecoes.viaturas.create'));
 	});
 
-Route::get('colecoes/reqs', [colecoesController::class,'reqsView'])
-	->name('colecoes.reqs')
-	->breadcrumbs(function (Trail $trail)
-	{
-		$trail->parent('admin.colecoes')
-			->push(__('Home'), route('admin.colecoes.reqs'));
-	});
-
 Route::get('colecoes/manage', [colecoesController::class,'manageView'])
 	->name('colecoes.manage')
 	->breadcrumbs(function (Trail $trail)
@@ -123,6 +115,6 @@ Route::post('colecoes/categorias/create', [colecoesController::class,'createCat'
 
 Route::post('colecoes/viaturas/create', [colecoesController::class,'createVia']);
 
-Route::post('colecoes/reqs', [colecoesController::class,'requisitar']);
-
 Route::post('colecoes/manage/manageUsers/{userId}/addCards', [colecoesController::class,'placeCarta']);
+
+Route::post('colecoes/manage/manageMarcacaos/{id}/finish', [colecoesController::class,'doneMarc']);

@@ -35,7 +35,7 @@
 									<td>{{ $marcacao->dataHora_entrega }}</td>
 									<td>{{ $marcacao->objetivo }}</td>
 									<td>{{ $marcacao->viatura->matricula }}</td>
-									<td>{{ $marcacao->polo->designacao }}</td>
+									<td>{{ $marcacao->poloE->designacao }}</td>
 									<td><a href="{{ URL('vehicules/requisitions/' . $marcacao->id . '/edit') }}">Editar</a></td>
 									<td><a href="{{ URL('vehicules/requisitions/' . $marcacao->id . '/cancel') }}">Cancelar</a></td>
 								</tr>

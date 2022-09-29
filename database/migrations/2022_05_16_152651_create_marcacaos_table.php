@@ -22,6 +22,7 @@ class CreateMarcacaosTable extends Migration
 			$table->string('objetivo');
 			$table->foreignId('viatura_id')->constrained();
 			$table->foreignId('poloEntrega_id')->constrained('polos');
+			$table->boolean('done')->default(false);
             $table->timestamps();
         });
     }

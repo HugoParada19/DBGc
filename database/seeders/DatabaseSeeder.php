@@ -107,6 +107,10 @@ class DatabaseSeeder extends Seeder
 		([
 			'categoria' => 'D - DE',
 		]);
+		DB::table('categorias_cartas')->insert
+		([
+			'categoria' => 'não possui',
+		]);
 
 		$this->call(testVehSeeder::class);
 		$this->call(userinfSeeder::class);

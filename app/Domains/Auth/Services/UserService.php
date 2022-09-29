@@ -56,6 +56,8 @@ class UserService extends BaseService
 
         try {
             $user = $this->createUser($data);
+			dd($data);
+			exit();
         } catch (Exception $e) {
             DB::rollBack();
 

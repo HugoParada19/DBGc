@@ -128,31 +128,9 @@ class colecoesController
 		$viaturas->save();
 
 		$viaturas = null;
-		$viaturas = DB::table('viaturas')->get();
+		$viaturas = Viaturas::all();
 
 		return view('backend.colecoes.viaturas', compact('viaturas'))->with('requested', true);
-	}
-
-	public function reqsView()
-	{
-		$marcacoes = marcacao::all();
-		return view('backend.colecoes.reqs')->with('marcacoes', $marcacoes);
-	}
-
-	public function requisitar(Request $request)
-	{
-		$requisicao = new requisicao;
-		$jsonDec = json_decode($request->marcacao_id);
-		$requisicao->marcacao_id = $jsonDec->id;
-		$requisicao->dataHora_levantar = $request->dataHora_levantar;
-		$requisicao->dataHora_entrega = $request->dataHora_entrega;
-		$requisicao->kmAntes = $request->kmAntes;
-		$requisicao->kmDepois = $request->kmDepois;
-		$requisicao->notas = $request->notas;
-		$requisicao->objetivo = $request->objetivo;
-		$requisicao->save();
-
-		return view('backend.colecoes.index');
 	}
 
 	public function manageView()
@@ -322,7 +300,7 @@ class colecoesController
 			$usercat->userinf_id = $userId;
 			foreach ($catCartas as $catCarta)
 			{
-				if ($catCarta->categoria = $request->catCarta)
+				if ($catCarta->categoria == $request->catCarta)
 				{
 					$usercat->catCarta_id = $catCarta->id;
 					break;
@@ -339,22 +317,83 @@ class colecoesController
 	
 	public function manMarcView()
 	{
-
-		return view('backend.colecoes.manMarcs');
+		$marcacaos = marcacao::all();
+		return view('backend.colecoes.manMarcs')->with('marcacaos', $marcacaos);
 	}
 
 	public function finishMarc($id)
 	{
+		$marcacao = marcacao::find($id);
 
+		return view('backend.colecoes.finishMarc', compact('marcacao'));
+	}
+
+	public function doneMarc($id, Request $request)
+	{
+		$validated = $request->validate
+		([
+			'dataHora_entrega' => 'required',
+			'kmAntes' => 'required|integer',
+			'kmDepois' => 'required|integer',
+		]);
+		$marcacao = marcacao::find($id);
+		$date = new Date('today');
+		
+		if ($request->dataHora_levantar <= $date && $request->dataHora_entrega >= $request->dataHora_levantar)
+		{
+			$requisicao = new requisicao;
+			$requisicao->marcacao_id = $id;
+			$requisicao->dataHora_levantar = $marcacao->dataHora_levantar;
+			$requisicao->dataHora_entrega = $request->dataHora_entrega;
+			$requisicao->kmAntes = $request->kmAntes;
+			$requisicao->kmDepois = $request->kmDepois;
+			if ($request->notas != null)
+				$requisicao->notas = $request->notas;
+			else
+				$requisicao->notas = '';
+			$requisicao->objetivo = $marcacao->objetivo;
+			$requisicao->timestamps = $date;
+			$requisicao->save();
+
+			$marcacao->done = true;
+			$viatura = Viaturas::find($marcacao->viatura_id);
+			$viatura->requisited = false;
+			$marcacao->save();
+			$viatura->save();
+
+			return redirect()->action([colecoesController::class,'manMarcView']);
+		}
+		else
+		{
+			$catCartas = categorias_cartas::all();
+			$userinf = userinf::find($userId);
+			$iCanExist = true;
+			return view('backend.colecoes.createCart', compact('catCartas', 'userinf', 'iCanExist'));
+
+		}
 	}
 
 	public function destroyMarc($id)
 	{
-	
+		$marcacao = marcacao::find($id);
+		$viatura = Viaturas::find($marcacao->viatura_id);
+		$viatura->requisited = false;
+		$marcacao->delete();
+		$viatura->save();
+
+		return redirect()->action([colecoesController::class,'manMarcView']);
+
 	}
 
 	public function manageMarc($id)
 	{
-	
+		$marcacao = marcacao::where('id', $id)->with('poloL', 'poloE', 'viatura')->first();
+
+		return view('backend.colecoes.manageMarc', compact('marcacao'));
+	}
+
+	public function changeMarc($id, Request $request)
+	{
+		$marcacao = marcacao::find($id);
 	}
 }

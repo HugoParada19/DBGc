@@ -40,7 +40,7 @@
 							<br> <strong>Nota: </strong> Em caso de este campo estiver vazio, nenhuma mudança será aplicada...<br>
 
 							<label for="polo">Polo escolhido: </label>
-							<input id="polos" name="polo" placeholder="{{ $marcacao->polo->designacao }}">
+							<input id="polos" name="polo" placeholder="{{ $marcacao->poloE->designacao }}">
 							<datalist>
 								@foreach ($polos as $polo)
 									<option value="{{ $polo->designacao }}">

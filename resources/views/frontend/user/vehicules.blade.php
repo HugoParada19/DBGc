@@ -12,18 +12,8 @@
 					</x-slot>
 
 					<x-slot name="body">
-						<x-utils.link
-							text="Requesitar"
-							class="nav-link active"
-							data-toggle="pill"
-							:href="route('frontend.user.vehicules.request')"
-							role="tab" />
-						<x-utils.link
-							text="Ver veiculos requisitados"
-							class="nav-link active"
-							data-toggle="pill"
-							:href="route('frontend.user.vehicules.requisitions')"
-							role="tab" />
+						<a href="{{ URL('vehicules/request') }}">Requesitar</a><br><br>
+						<a href="{{ URL('vehicules/requisitions') }}">Ver veículos requisitados</a><br><br>
 					</x-slot>
 				</x-frontend.card>
 			</div>

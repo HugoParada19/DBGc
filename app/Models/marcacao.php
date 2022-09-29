@@ -9,7 +9,7 @@ class marcacao extends Model
 {
     use HasFactory;
 
-	public function polo()
+	public function poloE()
 	{
 		return $this->belongsTo(Polos::class, 'poloEntrega_id');
 	}
@@ -17,5 +17,10 @@ class marcacao extends Model
 	public function viatura()
 	{
 		return $this->belongsTo(Viaturas::class);
+	}
+
+	public function poloL()
+	{
+		return $this->belongsTo(Polos::class, 'poloLevantar_id');
 	}
 }
